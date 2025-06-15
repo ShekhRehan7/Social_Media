@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+.formSignup{
+    background-color: rgba(255, 255, 255, 0.940);
+    color: black;
+    font-weight: 600;
+    backdrop-filter: blur(15px);
+}
+.slogan{ 
+    font-weight: 600;
+    text-shadow: 10px 10px 10px black;
+  }
+
+
+  /* Add this CSS */
+.custom-dots {
+  margin-top: 10px;
+}
+
+.custom-dots ul {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.custom-dots li{
+  list-style: none;
+}
+
+.custom-dots li button {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: gray;
+  padding: 0;
+  border: none;
+}
+
+.custom-dots li.slick-active button {
+  background: #2563eb; /* Blue color for active dot */
+  width: 12px;
+  height: 12px;
+}
