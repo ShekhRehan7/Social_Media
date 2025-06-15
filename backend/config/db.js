@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 
 const connectToDb =async()=>{
     
     try {
-        await mongoose.connect('mongodb://localhost:27017/socialMedia')
+        await mongoose.connect(process.env.MONGO_URL)
         console.log('Mongodb connected successfully')
     } catch (error) {
         console.log('error in connecting mongodb')
