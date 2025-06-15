@@ -22,7 +22,7 @@ const Home = () => {
   },[])
   
   return (
-    <div className='bg-gray-100 pt-2 px-2 py-2'>
+    <div className='bg-gray-100 min-h-screen  pt-2 px-2 py-2'>
        <PostUploader  getAllPosts={getAllPosts} />
          <div className="flex w-[300px] sm:w-[350px]  md:w-[400px] m-auto flex-col gap-2 mt-5  ">
         {
