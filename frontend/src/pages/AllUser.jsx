@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const AllUser = () => {
+  let url = import.meta.env.VITE_DEPLOYMENT==="production"?import.meta.env.VITE_ENDPOINT:"http://localhost:9000"
+
   const { user, token } = useSelector((state) => state.user);
   const [allUser, setAllUser] = useState([]);
 
   const getAllUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:9000/user/allUser', {
+      const res = await axios.get(url+'/user/allUser', {
         headers: {
           Authorization: token,
         },

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { updateProfile } from "../redux/userSlice";
 
 const EditProfile = () => {
+   let url = import.meta.env.VITE_DEPLOYMENT === "production" ? import.meta.env.VITE_ENDPOINT : "http://localhost:9000"
   const userSlice = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -31,7 +32,7 @@ const EditProfile = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:9000/user/update`,
+        url+`/user/update`,
        obj,
         {
           headers: {

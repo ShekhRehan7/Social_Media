@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePic } from '../redux/userSlice';
 import { IoCamera } from "react-icons/io5";
-import PoastUploder from '../components/PostUploader';
 import PostCards from '../components/PostCards';
 import PostUploader from '../components/PostUploader';
 import { Link } from 'react-router-dom';
 
 const UserProfile = () => {
+   let url = import.meta.env.VITE_DEPLOYMENT === "production" ? import.meta.env.VITE_ENDPOINT : "http://localhost:9000"
   const userSlice = useSelector((state) => state.user);
   // console.log(userSlice)
   const user = userSlice?.user;
@@ -32,7 +32,7 @@ const UserProfile = () => {
       const url = res.data.secure_url;
 
       const res1 = await axios.put(
-        'http://localhost:9000/user/update',
+        url+'/user/update',
         { [name]: url },
         {
           headers: {
@@ -51,7 +51,7 @@ const UserProfile = () => {
   };
 
   const yourPost = async () => {
-    let res = await axios.get('http://localhost:9000/post/yourPost', {
+    let res = await axios.get(url+'/post/yourPost', {
       headers: {
         "Authorization": userSlice.token
       }

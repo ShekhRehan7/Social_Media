@@ -7,6 +7,7 @@ import axios from 'axios';
 
 
 const Signup = () => {
+   let url = import.meta.env.VITE_DEPLOYMENT === "production" ? import.meta.env.VITE_ENDPOINT : "http://localhost:9000"
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate()
@@ -53,7 +54,7 @@ const Signup = () => {
 
     // console.log(details)
 
-    let res = await axios.post('http://localhost:9000/user/create',details)
+    let res = await axios.post(url+'/user/create',details)
 
     let data = res.data
     // console.log(res)

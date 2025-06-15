@@ -9,6 +9,7 @@ import {setState} from'../redux/userSlice'
 
 
 const Login = () => {
+   let url = import.meta.env.VITE_DEPLOYMENT === "production" ? import.meta.env.VITE_ENDPOINT : "http://localhost:9000"
    
   const dispatch =useDispatch()
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,7 @@ const Login = () => {
   const handleSubmit =async(e)=>{
     e.preventDefault()
     try {
-       let res = await axios.post('http://localhost:9000/user/login',details)
+       let res = await axios.post(url+'/user/login',details)
       //  console.log(res)
        let data = res.data
        if(res.status==200 || res.status==201){

@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 
 const FriendCard = (props) => {
 
+  let url = import.meta.env.VITE_DEPLOYMENT==="production"?import.meta.env.VITE_ENDPOINT:"http://localhost:9000"
 
   const [friend, setfriend] = useState ("");
   const friendId  = props.element._id
@@ -15,7 +16,7 @@ const FriendCard = (props) => {
   // console.log(userSlice.user)
 
    const followUnfollow = async()=>{
-   let res = await axios.put(`http://localhost:9000/user/followUnfollow/${friendId}`,{},{
+   let res = await axios.put(url+`/user/followUnfollow/${friendId}`,{},{
     headers:{
       'Authorization':userSlice.token
     }
@@ -29,7 +30,7 @@ const FriendCard = (props) => {
   }
 
    let getFriend = async () => {
-    let res = await axios.get(`http://localhost:9000/user/friend/${friendId}`, {
+    let res = await axios.get(url+`/user/friend/${friendId}`, {
       headers: {
         "Authorization": userSlice.token,
       },

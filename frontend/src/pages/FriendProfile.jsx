@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { updateFollowings } from '../redux/userSlice'
 
 const FriendProfile = () => {
+   let url = import.meta.env.VITE_DEPLOYMENT === "production" ? import.meta.env.VITE_ENDPOINT : "http://localhost:9000"
   let location = useLocation()
   const dispatch = useDispatch()
   let userSlice = useSelector((state) => state.user)
@@ -19,7 +20,7 @@ const FriendProfile = () => {
 
 
   let getFriend = async () => {
-    let res = await axios.get(`http://localhost:9000/user/friend/${friendId}`, {
+    let res = await axios.get(url+`/user/friend/${friendId}`, {
       headers: {
         Authorization: userSlice.token,
       },
@@ -32,7 +33,7 @@ const FriendProfile = () => {
   }
   
   const followUnfollow = async()=>{
-   let res = await axios.put(`http://localhost:9000/user/followUnfollow/${friendId}`,{},{
+   let res = await axios.put(url+`/user/followUnfollow/${friendId}`,{},{
     headers:{
       'Authorization':userSlice.token
     }

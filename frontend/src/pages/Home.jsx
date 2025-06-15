@@ -7,11 +7,11 @@ import PostCards from '../components/PostCards'
 
 
 const Home = () => {
-
+    let url = import.meta.env.VITE_DEPLOYMENT==="production"?import.meta.env.VITE_ENDPOINT:"http://localhost:9000"
     const [AllPost, setAllPost] = useState([]);
 
   let getAllPosts = async()=>{
-    let res = await axios.get('http://localhost:9000/post/getAllPost');
+    let res = await axios.get(url+'/post/getAllPost');
     let data = res.data;
     // console.log(data)
     setAllPost(data.post)

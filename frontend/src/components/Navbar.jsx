@@ -13,6 +13,8 @@ import { MdMenuBook, MdMovie, MdStar } from 'react-icons/md';
 import { AiFillCloseCircle } from "react-icons/ai";
 import axios from 'axios';
 const Navbar = () => {
+  let url = import.meta.env.VITE_DEPLOYMENT==="production"?import.meta.env.VITE_ENDPOINT:"http://localhost:9000"
+  
 
   let dispatch = useDispatch();
   let userSlice = useSelector((state) => state.user)
@@ -30,7 +32,7 @@ const Navbar = () => {
     const handleSearch = async(e)=>{
         let val = e.target.value
         // console.log(val)
-        let res = await axios.get(`http://localhost:9000/user/searchFriends?name=${val}`,{
+        let res = await axios.get(url+`/user/searchFriends?name=${val}`,{
           headers:{
             'Authorization':userSlice.token
           }

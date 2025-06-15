@@ -8,6 +8,8 @@ import { FaFileImage } from "react-icons/fa6";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 
 const PostUploader = (props) => {
+  let url = import.meta.env.VITE_DEPLOYMENT==="production"?import.meta.env.VITE_ENDPOINT:"http://localhost:9000"
+
   
   const [showEmoji, setShowEmoji] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -57,7 +59,7 @@ const PostUploader = (props) => {
         files: uploadedUrls,
       };
 
-      const res = await axios.post('http://localhost:9000/post/create', postPayload, {
+      const res = await axios.post(url+'/post/create', postPayload, {
         headers: {
           'Authorization': userSlice.token,
         },

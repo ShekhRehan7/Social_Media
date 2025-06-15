@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 const Forget = () => {
 
+   let url = import.meta.env.VITE_DEPLOYMENT === "production" ? import.meta.env.VITE_ENDPOINT : "http://localhost:9000"
   let emailRef= useRef()
 
 
@@ -15,7 +16,7 @@ const Forget = () => {
     }
 
     try {
-      let res = await axios.post('http://localhost:9000/user/forgetPassword',obj)
+      let res = await axios.post(url+'/user/forgetPassword',obj)
       // console.log(res)
       toast.success(res.data.msg)
       

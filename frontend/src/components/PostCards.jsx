@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PostCards = (props) => {
+  let url = import.meta.env.VITE_DEPLOYMENT==="production"?import.meta.env.VITE_ENDPOINT:"http://localhost:9000"
+
   const ele = props.ele;
   const userSlice = useSelector((state) => state.user);
 
@@ -27,7 +29,7 @@ const PostCards = (props) => {
   const likeOrDislike = async () => {
     try {
       let res = await axios.put(
-        `http://localhost:9000/post/likes/${ele._id}`,
+        url+`/post/likes/${ele._id}`,
         {},
         {
           headers: {
@@ -46,7 +48,7 @@ const PostCards = (props) => {
 
   const commentPost = async () => {
     let obj = { text: commentValue };
-    let res = await axios.put(`http://localhost:9000/post/comment/${ele._id}`, obj, {
+    let res = await axios.put(url+`/post/comment/${ele._id}`, obj, {
       headers: {
         'Authorization': userSlice.token
       }
@@ -60,7 +62,7 @@ const PostCards = (props) => {
 
   const deletePost = async (id) => {
     let postId = id._id;
-    let res = await axios.delete(`http://localhost:9000/post/deletePost/${postId}`, {
+    let res = await axios.delete(url+`/post/deletePost/${postId}`, {
       headers: {
         Authorization: userSlice.token,
       },
